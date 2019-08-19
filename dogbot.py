@@ -39,6 +39,15 @@ async def warpop():
     await bot.say(cssformat(str(*pop, sep = "\n")))
 
 
+@bot.command(name='!streams', pass_context=True)
+async def streams():
+htmldata = requests.get('https://www.returnofreckoning.com/')
+soup = bs(htmldata.text, 'lxml')
+for link in soup.findAll(class_="topictitle"):
+	titles = link.text
+	streams = link.get('href')
+	await bot.say(titles + " -> " + streams)
+
 @client.event
 async def on_ready():
     print("Connected!")
