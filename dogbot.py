@@ -47,7 +47,7 @@ async def streams():
     for link in soup.findAll(class_="topictitle"):
         titles = link.text
         streams = link.get('href')
-        await bot.say(titles + " -> " + streams)
+        await bot.say(titles + " -> " + "<" + streams + ">")
 
 
 @bot.event
