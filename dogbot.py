@@ -50,16 +50,6 @@ async def streams():
         await bot.say(titles + " -> " + streams)
 
 
-@bot.command(name='tobbe', pass_context=True)
-async def tobbe(ctx):
-    url_data = requests.get('http://www.oscarshall.se/empty_8.html').text
-    soup = bs(url_data, 'html.parser')
-    maten = soup.find("div", class_ = "ParagraphContainer")
-    maten = maten.getText().rstrip().lstrip()
-    maten = re.sub("(?s)100(.*$)", " ", maten)
-    await bot.say(htmlformat(maten))
-
-
 @bot.event
 async def on_ready():
     print("Connected!")
