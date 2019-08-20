@@ -4,8 +4,9 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 from bs4 import BeautifulSoup as bs
 import os
-
-client = discord.Client()
+import requests
+import re
+#client = discord.Client()
 
 
 def cssformat(input):
@@ -27,7 +28,7 @@ with open(TOKENHOME + "token.txt", "r") as readfile:
 @bot.command(name='warpop', pass_context=True)
 async def warpop():
     htmldata = requests.get('https://www.returnofreckoning.com/whos_online.php').text
-    soup = bs(htmldata, 'lxml')
+    soup = bs(htmldata, "lxml")
     pop = soup.find(class_="realm-info realm-info-detail").getText()
     pop = pop.replace("Total :", "")
     pop = pop.replace("Faction ratio (Order/Destruction) :", "")
@@ -36,33 +37,34 @@ async def warpop():
     pop = pop.strip().splitlines()
     pop = list(filter(None, pop))
     pop = '\n'.join(pop)
-    await bot.say(cssformat(str(*pop, sep = "\n")))
+    await bot.say(cssformat(str(pop)))
 
 
-@bot.command(name='!streams', pass_context=True)
+@bot.command(name='streams', pass_context=True)
 async def streams():
-htmldata = requests.get('https://www.returnofreckoning.com/')
-soup = bs(htmldata.text, 'lxml')
-for link in soup.findAll(class_="topictitle"):
-	titles = link.text
-	streams = link.get('href')
-	await bot.say(titles + " -> " + streams)
+    htmldata = requests.get('https://www.returnofreckoning.com/')
+    soup = bs(htmldata.text, 'lxml')
+    for link in soup.findAll(class_="topictitle"):
+        titles = link.text
+        streams = link.get('href')
+        await bot.say(titles + " -> " + streams)
 
-	
-@bot.command(name='why', pass_context=True)
-async def why(ctx):
-    url_data = requests.get('http://pages.cs.wisc.edu/~ballard/bofh/excuses').text
+
+@bot.command(name='tobbe', pass_context=True)
+async def tobbe(ctx):
+    url_data = requests.get('http://www.oscarshall.se/empty_8.html').text
     soup = bs(url_data, 'html.parser')
-    for line in soup:
-        soppa = line.splitlines()
-    await bot.say(random.choice(soppa))
+    maten = soup.find("div", class_ = "ParagraphContainer")
+    maten = maten.getText().rstrip().lstrip()
+    maten = re.sub("(?s)100(.*$)", " ", maten)
+    await bot.say(htmlformat(maten))
 
 
-@client.event
+@bot.event
 async def on_ready():
     print("Connected!")
-    print(client.user.name)
-    print(client.user.id)
-    await client.change_presence(game=discord.Game(name="Doge Of War"))
+    print(bot.user.name)
+    print(bot.user.id)
+    await bot.change_presence(game=discord.Game(name="Doge Of War"))
 
-client.run(TOKEN)
+bot.run(TOKEN)
