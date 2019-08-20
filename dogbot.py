@@ -49,6 +49,11 @@ async def streams():
         streams = link.get('href')
         await bot.say(titles + " -> " + "<" + streams + ">")
 
+@bot.command(name='serverinvite', pass_context=True)
+async def inv(ctx):
+    invite = await bot.create_invite(ctx.message.channel, max_uses=1, xkcd=True)
+    await bot.send_message(ctx.message.author, "Invite URL is {}".format(invite.url))
+    await bot.say(ctx.message.author.mention + " Invite URL generated, check your PM's! ")
 
 @bot.event
 async def on_ready():
