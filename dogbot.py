@@ -44,10 +44,14 @@ async def warpop():
 async def streams():
     htmldata = requests.get('https://www.returnofreckoning.com/')
     soup = bs(htmldata.text, 'lxml')
+    outstuff = []
     for link in soup.findAll(class_="topictitle"):
-        titles = link.text
-        streams = link.get('href')
-        await bot.say(titles + " -> " + "<" + streams + ">")
+        outstuff.append(link.getText().rstrip())
+        outstuff.append(" ⟿  " + "<" + link.get('href') + ">")
+    outstuff = ''.join(outstuff)
+    outstuff = outstuff.replace(">", ">\n")
+    await bot.say(htmlformat(outstuff))
+
 
 @bot.command(name='serverinvite', pass_context=True)
 async def inv(ctx):
