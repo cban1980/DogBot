@@ -28,7 +28,7 @@ with open(TOKENHOME + "token.txt", "r") as readfile:
 @bot.command(name='warpop', pass_context=True)
 async def warpop():
     htmldata = requests.get('https://www.returnofreckoning.com/whos_online.php').text
-    soup = bs(htmldata, "lxml")
+    soup = bs(htmldata, "html5lib")
     pop = soup.find(class_="realm-info realm-info-detail").getText()
     pop = pop.replace("Total :", "")
     pop = pop.replace("Faction ratio (Order/Destruction) :", "")
@@ -43,14 +43,14 @@ async def warpop():
 @bot.command(name='streams', pass_context=True)
 async def streams():
     htmldata = requests.get('https://www.returnofreckoning.com/')
-    soup = bs(htmldata.text, 'lxml')
+    soup = bs(htmldata.text, 'html5lib')
     outstuff = []
     for link in soup.findAll(class_="topictitle"):
         outstuff.append(link.getText().rstrip())
         outstuff.append(" ⟿  " + "<" + link.get('href') + ">")
     outstuff = ''.join(outstuff)
     outstuff = outstuff.replace(">", ">\n")
-    await bot.say(htmlformat(outstuff))
+    await bot.say(outstuff)
 
 
 @bot.command(name='serverinvite', pass_context=True)
