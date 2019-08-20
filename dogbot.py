@@ -48,6 +48,16 @@ for link in soup.findAll(class_="topictitle"):
 	streams = link.get('href')
 	await bot.say(titles + " -> " + streams)
 
+	
+@bot.command(name='why', pass_context=True)
+async def why(ctx):
+    url_data = requests.get('http://pages.cs.wisc.edu/~ballard/bofh/excuses').text
+    soup = bs(url_data, 'html.parser')
+    for line in soup:
+        soppa = line.splitlines()
+    await bot.say(random.choice(soppa))
+
+
 @client.event
 async def on_ready():
     print("Connected!")
