@@ -6,8 +6,7 @@ from bs4 import BeautifulSoup as bs
 import os
 import requests
 import re
-#client = discord.Client()
-
+import random
 
 def cssformat(input):
     return "```css\n" + input + "```"
@@ -16,6 +15,9 @@ def cssformat(input):
 def htmlformat(input):
     return "```html\n" + input + "```"
 
+
+def bold(input):
+    return "**" + input + "**"
 
 bot = commands.Bot(command_prefix='!')
 HOMEDIR = os.path.expanduser('~')
@@ -53,8 +55,16 @@ async def streams():
     await bot.say(outstuff)
 
 
+@bot.command(name='dice', pass_context=True)
+async def dice(ctx, arg):
+    min = 1
+    max = int(arg)
+    number = random.randint(min,max)
+    await bot.say("The dice tumbles and rolls for " + ctx.message.author.mention + " and it gives the number: " + bold(str(number)))
+
+
 @bot.command(name='serverinvite', pass_context=True)
-async def inv(ctx):
+async def inv(ctx ):
     invite = await bot.create_invite(ctx.message.channel, max_uses=1, xkcd=True)
     await bot.send_message(ctx.message.author, "Invite URL is {}".format(invite.url))
     await bot.say(ctx.message.author.mention + " Invite URL generated, check your PM's! ")
