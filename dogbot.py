@@ -50,11 +50,13 @@ async def streams():
     soup = bs(htmldata.text, 'html5lib')
     outstuff = []
     for link in soup.findAll(class_="topictitle"):
-        outstuff.append(link.getText().rstrip())
-        outstuff.append(" ⟿  " + "<" + link.get('href') + ">")
+        outstuffers = link.getText().rstrip()
+        outstuff.append(" ⟿  "  + "[" + str(outstuffers) + "]" + "(" + link.get('href') + ")" + "£")
     outstuff = ''.join(outstuff)
-    outstuff = outstuff.replace(">", ">\n")
-    await bot.say(outstuff)
+    outstuff = outstuff.replace("£", "\n")
+    embed=discord.Embed(title=" ")
+    embed.add_field(name="Currently running ROR Streams:", value=str(outstuff), inline=False)
+    await bot.say(embed=embed)
 
 
 @bot.command(name='dice', pass_context=True)
