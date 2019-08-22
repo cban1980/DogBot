@@ -56,11 +56,12 @@ async def streams():
 
 
 @bot.command(name='dice', pass_context=True)
-async def dice(ctx, arg):
+async def dice(ctx, arg,arg1):
     min = 1
-    max = int(arg)
+    max = int(arg1)
     number = random.randint(min,max)
-    await bot.say("The dice tumbles and rolls for " + ctx.message.author.mention + " and it gives the number: " + bold(str(number)))
+    for i in range(1,int(arg)):
+        await bot.say("The dice tumbles and rolls for " + ctx.message.author.mention + " and it gives the number: " + bold(str(number)))
 
 
 @bot.command(name='serverinvite', pass_context=True)
