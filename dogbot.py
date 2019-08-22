@@ -19,6 +19,7 @@ def htmlformat(input):
 def bold(input):
     return "**" + input + "**"
 
+
 bot = commands.Bot(command_prefix='!')
 HOMEDIR = os.path.expanduser('~')
 TOKENHOME = "%s/DogBot/" % (HOMEDIR)
@@ -26,6 +27,7 @@ bot.remove_command('help')
 
 with open(TOKENHOME + "token.txt", "r") as readfile:
     TOKEN = readfile.read().strip()
+
 
 @bot.command(name='warpop', pass_context=True)
 async def warpop():
@@ -56,12 +58,12 @@ async def streams():
 
 
 @bot.command(name='dice', pass_context=True)
-async def dice(ctx, arg,arg1):
+async def dice(ctx, arg, arg1):
     min = 1
     max = int(arg1)
-    number = random.randint(min,max)
-    rolls = [] 
-    for i in range(1,int(arg)):
+    number = random.randint(min, max)
+    rolls = []
+    for i in range(1, int(arg)):
         await bot.say("The dice tumbles and rolls for " + ctx.message.author.mention + " and it gives the number: " + bold(str(number)))
 
 
@@ -70,6 +72,7 @@ async def inv(ctx ):
     invite = await bot.create_invite(ctx.message.channel, max_uses=1, xkcd=True)
     await bot.send_message(ctx.message.author, "Invite URL is {}".format(invite.url))
     await bot.say(ctx.message.author.mention + " Invite URL generated, check your PM's! ")
+
 
 @bot.event
 async def on_ready():
