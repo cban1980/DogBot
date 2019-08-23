@@ -28,6 +28,16 @@ bot.remove_command('help')
 with open(TOKENHOME + "token.txt", "r") as readfile:
     TOKEN = readfile.read().strip()
 
+@bot.command(name='dogbot', pass_context=True)
+async def dogbot(ctx):
+    embed = discord.Embed(title="𝐃𝐨𝐠𝐁𝐨𝐭 𝐜𝐨𝐦𝐦𝐚𝐧𝐝𝐬:", description=" ", color=0xeee657)
+    embed.add_field(name="!streams", value="Displays currently running ROR twitch streams.", inline=False)
+    embed.add_field(name="!dice", value="Rolls the dices! Syntax: !dice <amount of dices> <number>.", inline=False)
+    embed.add_field(name="!warpop", value="Displays the current amount of population on the server, and currently players in T1 and T2+ ( excluding anonymous players)", inline=False)
+    embed.add_field(name="!serverinvite", value="Generates an invitelink to this Discord server. Will be sent to you in a private message.", inline=False)
+    embed.set_thumbnail(url="https://images-na.ssl-images-amazon.com/images/I/81-yKbVND-L._SY355_.png")
+    await bot.say(embed=embed)
+
 
 @bot.command(name='warpop', pass_context=True)
 async def warpop():
@@ -56,7 +66,7 @@ async def streams():
     outstuff = outstuff.replace("£", "\n")
     embed=discord.Embed(title=" ")
     embed.add_field(name="Currently running ROR Streams:", value=str(outstuff), inline=False)
-    await bot.say(embed=embed)
+    await bot.say(embed=embed) 
 
 
 @bot.command(name='dice', pass_context=True)
@@ -79,8 +89,6 @@ async def inv(ctx ):
 @bot.event
 async def on_ready():
     print("Connected!")
-    print(bot.user.name)
-    print(bot.user.id)
     await bot.change_presence(game=discord.Game(name="Doge Of War"))
 
 bot.run(TOKEN)
