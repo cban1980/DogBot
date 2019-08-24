@@ -73,7 +73,7 @@ async def streams():
 async def dice(ctx, arg, arg1):
     min = 1
     max = int(arg1)
-    if int(arg) < 5:
+    if int(arg) >= 6:
         await bot.say("To many dices, try 5 or less")
     else:
         for i in range(1, int(arg)+1):
