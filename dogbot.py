@@ -77,8 +77,9 @@ async def dice(ctx, arg, arg1):
         await bot.say("To many dices, try 5 or less")
     else:
         for i in range(1, int(arg)+1):
-            number = random.randint(min, max)
-            await bot.say("The dice tumbles and rolls for " + ctx.message.author.mention + " and it gives the number: " + bold(str(number)))
+            number.append(random.randint(min, max))
+await bot.say("The dice(s) tumbles and rolls for " + ctx.message.author.mention + " and it gives the numbers:
+await.bot.say(cssformat(bold(str(number))))
 
 
 @bot.command(name='serverinvite', pass_context=True)
