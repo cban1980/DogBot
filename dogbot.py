@@ -36,7 +36,7 @@ with open(TOKENHOME + "token.txt", "r") as readfile:
 async def dogbot(ctx):
     embed = discord.Embed(title="𝐃𝐨𝐠𝐁𝐨𝐭 𝐜𝐨𝐦𝐦𝐚𝐧𝐝𝐬:", description=" ", color=0xeee657)
     embed.add_field(name="!streams", value="Displays currently running ROR twitch streams.", inline=False)
-    embed.add_field(name="!dice", value="Rolls the dices! Syntax: !dice <amount of dices> <number>.", inline=False)
+    embed.add_field(name="!dice", value="Rolls the dices! Syntax: !dice <amount of dices> <number>. Max 5 dices.", inline=False)
     embed.add_field(name="!warpop", value="Displays the current amount of population on the server, and currently players in T1 and T2+ ( excluding anonymous players)", inline=False)
     embed.add_field(name="!serverinvite", value="Generates an invitelink to this Discord server. Will be sent to you in a private message.", inline=False)
     embed.set_thumbnail(url="https://images-na.ssl-images-amazon.com/images/I/81-yKbVND-L._SY355_.png")
