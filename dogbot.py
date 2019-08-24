@@ -74,14 +74,14 @@ async def streams():
 
 
 @bot.command(name='dice', pass_context=True)
-async def dice(ctx, arg, arg1):
+async def dice(ctx, *args):
     min = 1
-    max = int(arg1)
-    if int(arg) >= 6:
+    max = int(args[1])
+    if int(args[0]) >= 6:
         await bot.say("To many dices, try 5 or less")
     else:
         number = []
-        for i in range(1, int(arg)+1):
+        for i in range(1, int(args[0])+1):
             number.append(random.randint(min, max))
     total = sum(number)
     await bot.say("The dice(s) tumbles and rolls for " + ctx.message.author.mention + " and they gives the numbers: " + iniformat(str(number)) + cssformat(" Total: " + str(total)))
