@@ -75,7 +75,7 @@ async def streams():
 
 @bot.command(name='dice', pass_context=True)
 async def dice(ctx, *args):
-    if args is None:
+    if not args:
         await bot.say("The dice tumbles and rolls for " + ctx.message.author.mention + " and it gives the number: " + random.randint(1, 20))
     else:
         min = 1
