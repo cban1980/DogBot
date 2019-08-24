@@ -76,7 +76,8 @@ async def streams():
 @bot.command(name='dice', pass_context=True)
 async def dice(ctx, *args):
     if not args:
-        await bot.say("The dice tumbles and rolls for " + ctx.message.author.mention + " and it gives the number: " + iniformat(str(random.randint(1, 20))))
+        number = [random.randint(1, 20)]
+        await bot.say("The dice tumbles and rolls for " + ctx.message.author.mention + " and it gives the number: " + iniformat(str(number)))
     else:
         min = 1
         max = int(args[1])
@@ -87,7 +88,7 @@ async def dice(ctx, *args):
             for i in range(1, int(args[0])+1):
                 number.append(random.randint(min, max))
         total = sum(number)
-        await bot.say("The dice(s) tumbles and rolls for " + ctx.message.author.mention + " and they gives the numbers: " + iniformat(str(number)) + cssformat(" Total: " + str(total)))
+        await bot.say("The dices tumbles and rolls for " + ctx.message.author.mention + " and they gives the numbers: " + iniformat(str(number)) + cssformat(" Total: " + str(total)))
 
 
 @bot.command(name='serverinvite', pass_context=True)
