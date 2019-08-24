@@ -87,7 +87,7 @@ async def dice(ctx, arg, arg1):
         total = sum(number)
         await bot.say("The dice(s) tumbles and rolls for " + ctx.message.author.mention + " and they gives the numbers: " + iniformat(str(number)) + cssformat(" Total: " + str(total)))
     except Exception:
-        await bot.say("The dice tumbles and rolls for " + ctx.message.author.mention + " and it gives the number: " + iniformat(str(random.randint(1, 10))
+        await bot.say("The dice tumbles and rolls for " + ctx.message.author.mention + " and it gives the number: " + iniformat(str(random.randint(1, 10))))
 
 
 @bot.command(name='serverinvite', pass_context=True)
