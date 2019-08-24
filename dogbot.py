@@ -76,6 +76,7 @@ async def dice(ctx, arg, arg1):
     if int(arg) >= 6:
         await bot.say("To many dices, try 5 or less")
     else:
+        number = []
         for i in range(1, int(arg)+1):
             number.append(random.randint(min, max))
     await bot.say("The dice(s) tumbles and rolls for " + ctx.message.author.mention + " and it gives the numbers:")
