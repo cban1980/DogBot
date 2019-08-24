@@ -84,7 +84,7 @@ async def dice(ctx, arg, arg1):
         for i in range(1, int(arg)+1):
             number.append(random.randint(min, max))
     total = sum(number)
-    await bot.say("The dice(s) tumbles and rolls for " + ctx.message.author.mention + " and they gives the numbers: " + iniformat(str(number)) + " Total: " + total)
+    await bot.say("The dice(s) tumbles and rolls for " + ctx.message.author.mention + " and they gives the numbers: " + iniformat(str(number)) + " Total: " + str(total))
     
 
 
