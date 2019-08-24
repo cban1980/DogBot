@@ -79,7 +79,7 @@ async def dice(ctx, arg, arg1):
         number = []
         for i in range(1, int(arg)+1):
             number.append(random.randint(min, max))
-    await bot.say("The dice(s) tumbles and rolls for " + ctx.message.author.mention + " and it gives the numbers:")
+    await bot.say("The dice(s) tumbles and rolls for " + ctx.message.author.mention + " and it gives the numbers: " + cssformat(str(number)))
     await bot.say(cssformat(bold(str(number))))
 
 
