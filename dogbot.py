@@ -73,7 +73,6 @@ async def streams():
 async def dice(ctx, arg, arg1):
     min = 1
     max = int(arg1)
-    rolls = []
     for i in range(1, int(arg)+1):
         number = random.randint(min, max)
         await bot.say("The dice tumbles and rolls for " + ctx.message.author.mention + " and it gives the number: " + bold(str(number)))
